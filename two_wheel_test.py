@@ -1,5 +1,6 @@
 from two_wheel import servo_control
 import RPi.GPIO as GPIO
+import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -11,19 +12,20 @@ right = GPIO.PWM(22, 50)
 left.start(0)
 right.start(0)
 
-servo_control(str(left), str(forward))
+servo_control(left, 'forward')
 time.sleep(2)
-servo_control(str(left), str(idle))
+servo_control(left, 'idle')
 time.sleep(2)
-servo_control(str(left), str(backward))
+servo_control(left, 'backward')
 time.sleep(2)
-servo_control(str(right), str(forward))
-time.sleep(2)
-servo_control(str(right), str(idle))
-time.sleep(2)
-servo_control(str(right), str(backward))
-time.sleep(2)
-
 left.stop()
+
+servo_control(right, 'forward')
+time.sleep(2)
+servo_control(right, 'idle')
+time.sleep(2)
+servo_control(right, 'backward')
+time.sleep(2)
 right.stop()
+
 GPIO.cleanup

@@ -2,26 +2,14 @@ import RPi.GPIO as GPIO
 import time
 
 def servo_control(servo, direction):
-  if servo == 'left':
-    if direction == 'forward':
-      left.ChangeDutyCycle(7.61)
-    elif direction == 'backward':
-      left.ChangeDutyCycle(6.77)
-    elif direction == 'idle':
-      left.ChangeDutyCycle(0)
-    else:
-      print "Direction entered is invalid!"
-  elif str(servo) == 'right':
-    if direction == 'forward':
-      right.ChangeDutyCycle(6.77)
-    elif direction == 'backward':
-      right.ChangeDutyCycle(7.61)
-    elif direction == 'idle':
-      right.ChangeDutyCycle(0)
-    else:
-      print "Direction entered is invalid!"
+  if direction == 'forward':
+    servo.ChangeDutyCycle(7.61)
+  elif direction == 'backward':
+    servo.ChangeDutyCycle(6.77)
+  elif direction == 'idle':
+    servo.ChangeDutyCycle(0)
   else:
-    print "Servo entered is invalid!"
+    print "Direction entered is invalid!"
 
 if __name__ == "__main__":
   GPIO.setmode(GPIO.BCM)
@@ -33,13 +21,14 @@ if __name__ == "__main__":
   right = GPIO.PWM(22, 50)
   left.start(0)
   right.start(0)
+
   while True:
     command = raw_input("Enter servo(left or right) and direction(forward, backward, idle): ")
     if command == 'stop':
       break
     command = command.split()
     print command
-    servo = command[0]
+    servo = eval(command[0])
     direction = command[1]
     servo_control(servo, direction)
   left.stop()
