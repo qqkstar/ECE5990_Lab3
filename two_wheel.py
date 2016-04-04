@@ -35,8 +35,12 @@ if __name__ == "__main__":
   right.start(0)
   while True:
     command = raw_input("Enter servo(left or right) and direction(forward, backward, idle): ")
-    servo = 
-    direction = 
+    if command == 'stop':
+      break
+    command = command.split()
+    print command
+    servo = command[0]
+    direction = command[1]
     servo_control(servo, direction)
   left.stop()
   right.stop()
