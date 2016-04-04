@@ -2,9 +2,9 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
 
-p = GPIO.PWM(17, 50)
+p = GPIO.PWM(22, 50)
 p.start(0)
 time.sleep(2)
 
