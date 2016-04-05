@@ -92,6 +92,22 @@ def right_direction_disp(text):
   right_direction = font.render(text, 1, (255,250,255))
   return right_direction
 
+def func1():
+  time_stamp = time.time()
+  curr_time = 0
+  while curr_time < 4:
+    curr_time = time.time()-time_stamp
+    for event in pygame.event.get():
+      if event.type == pygame.MOUSEBUTTONDOWN:
+        p=pygame.mouse.get_pos()
+        if p[0]>130 and p[0]<190 and p[1]>110 and p[1]<180:
+          left.stop()
+          right.stop()
+          screen.blit(stop, stop_rect)
+          pygame.display.flip()
+          time.sleep(3)
+          sys.exit()
+
 left.ChangeDutyCycle(7.41)
 left_duty = 7.41
 left_info = 'forward'
@@ -109,7 +125,7 @@ screen.blit(quit_text, quit_text_pos)
 screen.blit(left_direction, left_direction_pos)
 screen.blit(right_direction, right_direction_pos)
 pygame.display.flip()
-time.sleep(4)
+func1()
 
 left.ChangeDutyCycle(7.41)
 left_duty = 7.41
@@ -130,7 +146,7 @@ screen.blit(right_direction, right_direction_pos)
 screen.blit(left_direction2, left_direction_pos2)
 screen.blit(right_direction2, right_direction_pos2)
 pygame.display.flip()
-time.sleep(3)
+func1()
 
 left.ChangeDutyCycle(6.97)
 left_duty = 6.97
@@ -153,7 +169,7 @@ screen.blit(right_direction2, right_direction_pos2)
 screen.blit(left_direction3, left_direction_pos3)
 screen.blit(right_direction3, right_direction_pos3)
 pygame.display.flip()
-time.sleep(3)
+func1()
 
 left.ChangeDutyCycle(6.97)
 left_duty = 6.97
@@ -176,11 +192,4 @@ screen.blit(right_direction2, right_direction_pos2)
 screen.blit(left_direction3, left_direction_pos3)
 screen.blit(right_direction3, right_direction_pos3)
 pygame.display.flip()
-time.sleep(3)
-
-screen.blit(stop, stop_rect)
-pygame.display.flip()
-left.stop()
-right.stop()
-time.sleep(4)
-sys.exit()
+func1()
